@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pen_vibes/common/service_locator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  ServiceLocator.init();
   runApp(const MyApp());
 }
 
@@ -46,13 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
               'Welcome to PenVides App',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton.icon(
+                onPressed: () async {},
+                icon: const Icon(Icons.add),
+                label: const Text("Add User"))
           ],
         ),
       ),
